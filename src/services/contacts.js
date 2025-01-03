@@ -19,6 +19,9 @@ export const getAllContacts = async ({
   if (filter.isFavourite) {
     contactsQuery.where('isFavourite').equals(filter.isFavourite);
   }
+  if (filter.userId) {
+    contactsQuery.where('userId').equals(filter.userId);
+  }
 
   const [contactsCount, contacts] = await Promise.all([
     ContactsCollection.find().merge(contactsQuery).countDocuments(),
@@ -37,8 +40,13 @@ export const getAllContacts = async ({
   };
 };
 
-export const getContactById = async (contactId) => {
-  const contact = await ContactsCollection.findById(contactId);
+// export const getContactById = async (contactId) => {
+//   const contact = await ContactsCollection.findById(contactId);
+//   return contact;
+// };
+
+export const getContactById = async (filter) => {
+  const contact = await ContactsCollection.findOne(filter);
   return contact;
 };
 
@@ -48,12 +56,12 @@ export const createContact = async (contactData) => {
 };
 
 export const updateContact = async (
-  contactId,
+  filter,
   updateContactData,
   options = {},
 ) => {
   const result = await ContactsCollection.findOneAndUpdate(
-    { _id: contactId },
+    filter,
     updateContactData,
     {
       new: true,
@@ -68,7 +76,7 @@ export const updateContact = async (
   };
 };
 
-export const deleteContact = async (contactId) => {
-  const contact = await ContactsCollection.findOneAndDelete({ _id: contactId });
+export const deleteContact = async (filter) => {
+  const contact = await ContactsCollection.findOneAndDelete(filter);
   return contact;
 };
