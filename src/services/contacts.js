@@ -40,11 +40,6 @@ export const getAllContacts = async ({
   };
 };
 
-// export const getContactById = async (contactId) => {
-//   const contact = await ContactsCollection.findById(contactId);
-//   return contact;
-// };
-
 export const getContactById = async (filter) => {
   const contact = await ContactsCollection.findOne(filter);
   return contact;
