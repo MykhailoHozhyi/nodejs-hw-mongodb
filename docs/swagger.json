@@ -591,8 +591,8 @@
               }
             }
           },
-          "400": {
-            "$ref": "#/components/responses/400"
+          "401": {
+            "$ref": "#/components/responses/401"
           }
         }
       },
@@ -616,8 +616,7 @@
                 "required": [
                   "name",
                   "phoneNumber",
-                  "contactType",
-                  "userId"
+                  "contactType"
                 ],
                 "properties": {
                   "name": {
@@ -649,15 +648,10 @@
                       "personal"
                     ]
                   },
-                  "userId": {
-                    "description": "User's id",
-                    "type": "string",
-                    "example": "65e4decdd286b30065d54af9"
-                  },
                   "photo": {
                     "description": "Link to contact's photo",
                     "type": "string",
-                    "example": "binary"
+                    "format": "binary"
                   }
                 }
               }
@@ -787,9 +781,6 @@
             "multipart/form-data": {
               "schema": {
                 "type": "object",
-                "required": [
-                  "userId"
-                ],
                 "properties": {
                   "name": {
                     "description": "Contact's name",
@@ -820,15 +811,10 @@
                       "personal"
                     ]
                   },
-                  "userId": {
-                    "description": "User's id",
-                    "type": "string",
-                    "example": "65e4decdd286b30065d54af9"
-                  },
                   "photo": {
                     "description": "Link to contact's photo",
                     "type": "string",
-                    "example": "binary"
+                    "format": "binary"
                   }
                 }
               }
